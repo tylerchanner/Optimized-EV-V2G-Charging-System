@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<h2 class="mb-4">📊 Dashboard</h2>
+
+<!-- Forecast Charts -->
+<div class="row g-4 mb-5">
+  <!-- Solar Radiation -->
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header">🌞 Solar Radiation Forecast (W/m²)</div>
+      <div class="card-body">
+        <canvas id="solarChart" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cloud Cover -->
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header">☁️ Cloud Cover Forecast (%)</div>
+      <div class="card-body">
+        <canvas id="cloudChart" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Temperature -->
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header">🌡️ Temperature Forecast (°C)</div>
+      <div class="card-body">
+        <canvas id="tempChart" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- PV Generation -->
+  <div class="col-md-6">
+    <div class="card shadow-sm">
+      <div class="card-header">🔋 Predicted PV Generation (kW)</div>
+      <div class="card-body">
+        <canvas id="pvChart" height="100"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+fetch("/api/dashboard-weather")
+  .then(res => res.json())
+  .then(data => {
+    const labels = data.labels;
+
+    new Chart(document.getElementById("solarChart"), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: "Solar Radiation",
+          data: data.solar_radiation,
+          borderColor: 'gold',
+          backgroundColor: 'rgba(255,215,0,0.2)',
+          tension: 0.4
+        }]
+      }
+    });
+
+    new Chart(document.getElementById("cloudChart"), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: "Cloud Cover",
+          data: data.cloud_cover,
+          borderColor: 'gray',
+          backgroundColor: 'rgba(128,128,128,0.2)',
+          tension: 0.4
+        }]
+      }
+    });
+
+    new Chart(document.getElementById("tempChart"), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: "Temperature",
+          data: data.temperature,
+          borderColor: 'red',
+          backgroundColor: 'rgba(255,0,0,0.2)',
+          tension: 0.4
+        }]
+      }
+    });
+
+    new Chart(document.getElementById("pvChart"), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [{
+          label: "Predicted PV (kW)",
+          data: data.predicted_pv,
+          borderColor: 'green',
+          backgroundColor: 'rgba(0,128,0,0.2)',
+          tension: 0.4
+        }]
+      }
+    });
+  });
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,12 @@
+Flask
+googlemaps
+numpy
+pandas
+requests
+requests-cache
+retry-requests
+openmeteo-requests
+joblib
+scikit-learn
+tensorflow
+PuLP

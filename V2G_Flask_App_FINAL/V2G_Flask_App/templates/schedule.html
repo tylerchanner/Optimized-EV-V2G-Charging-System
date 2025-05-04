@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Schedule Table{% endblock %}
+{% block content %}
+<h2 class="mb-4">📅 Hour-by-Hour Charging Schedule</h2>
+
+{% if plan %}
+<div class="card shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title mb-3">{{ plan.name or "Unnamed Plan" }}</h5>
+    <table class="table table-bordered table-hover">
+      <thead class="table-light">
+        <tr>
+          <th>Hour</th>
+          <th>Solar (kW)</th>
+          <th>Grid (kW)</th>
+          <th>Discharge (kW)</th>
+          <th>Battery SoC (kWh)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for h in range(plan.deadline_hour + 1) %}
+        <tr>
+          <td>{{ (plan.start_hour + h) % 24 }}</td>
+          <td>{{ plan.result.solar_charging[h] | round(2) }}</td>
+          <td>{{ plan.result.grid_charging[h] | round(2) }}</td>
+          <td>{{ plan.result.grid_discharging[h] | round(2) }}</td>
+          <td>{{ plan.result.battery_soc[h] | round(2) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% else %}
+<p>No saved plan found. Simulate one via <a href="{{ url_for('planner') }}">Plan a Trip</a>.</p>
+{% endif %}
+{% endblock %}

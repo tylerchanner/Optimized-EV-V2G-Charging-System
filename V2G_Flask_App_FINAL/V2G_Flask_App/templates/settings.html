@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">⚙️ Settings</h2>
+
+<form method="POST" class="mb-5">
+  <!-- Car Template Dropdown -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-white"><strong>🚗 Car Settings</strong></div>
+    <div class="card-body">
+      <div class="mb-3">
+        <label for="car_name" class="form-label">Template Car</label>
+        <select id="car_name" name="car_name" class="form-select">
+          <option value="">Custom…</option>
+          {% for model in cars %}
+            <option value="{{ model }}"
+              {% if settings.car_name==model %}selected{% endif %}>
+              {{ model }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="battery_capacity" class="form-label">Battery Capacity (kWh)</label>
+          <input type="number" step="0.1" id="battery_capacity" name="battery_capacity"
+                 value="{{ settings.battery_capacity }}" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="initial_soc" class="form-label">Initial State of Charge (kWh)</label>
+          <input type="number" step="0.1" id="initial_soc" name="initial_soc"
+                 value="{{ settings.initial_soc }}" class="form-control">
+        </div>
+      </div>
+
+      <div class="row g-3 mt-3">
+        <div class="col-md-6">
+          <label for="charge_rate" class="form-label">Max Charge Rate (kW)</label>
+          <input type="number" step="0.1" id="charge_rate" name="charge_rate"
+                 value="{{ settings.charge_rate }}" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label for="discharge_rate" class="form-label">Max Discharge Rate (kW)</label>
+          <input type="number" step="0.1" id="discharge_rate" name="discharge_rate"
+                 value="{{ settings.discharge_rate }}" class="form-control">
+        </div>
+      </div>
+
+      <div class="row g-3 mt-3">
+        <div class="col-md-6">
+          <label for="energy_per_mile" class="form-label">Energy per Mile (kWh/mile)</label>
+          <input type="number" step="0.01" id="energy_per_mile" name="energy_per_mile"
+                 value="{{ settings.energy_per_mile }}" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- System & Charger Settings -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header bg-white"><strong>🔌 System & Charger Settings</strong></div>
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="min_soc_limit" class="form-label">Min SoC Reserve (fraction)</label>
+          <input type="number" step="0.01" min="0" max="1" id="min_soc_limit" name="min_soc_limit"
+                 value="{{ settings.min_soc_limit }}" class="form-control">
+          <div class="form-text">Fraction of capacity to hold back (e.g. 0.1 = 10%).</div>
+        </div>
+        <div class="col-md-6">
+          <label for="degradation_cost_per_kwh" class="form-label">Degradation Cost (£/kWh)</label>
+          <input type="number" step="0.001" id="degradation_cost_per_kwh" name="degradation_cost_per_kwh"
+                 value="{{ settings.degradation_cost_per_kwh }}" class="form-control">
+        </div>
+      </div>
+
+      <div class="row g-3 mt-3">
+        <div class="col-md-6">
+          <label for="v2g_sell_price" class="form-label">V2G Sell Price (£/kWh)</label>
+          <input type="number" step="0.01" id="v2g_sell_price" name="v2g_sell_price"
+                 value="{{ settings.v2g_sell_price }}" class="form-control">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">💾 Save Settings</button>
+</form>
+
+<script>
+  // cars is passed in by the Flask route as a dict of model→specs
+  const cars = {{ cars|tojson }};
+  const select = document.getElementById("car_name");
+
+  select.addEventListener("change", () => {
+    const spec = cars[select.value];
+    if (!spec) return;  // “Custom…” selected
+
+    // autopopulate the car fields
+    document.getElementById("battery_capacity").value = spec.battery_capacity;
+    document.getElementById("charge_rate").value      = spec.max_charge_rate;
+    document.getElementById("discharge_rate").value   = spec.max_discharge_rate;
+    document.getElementById("energy_per_mile").value  = spec.energy_per_mile;
+    // you can add more fields here if you expand your car spec
+  });
+</script>
+{% endblock %}

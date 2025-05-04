@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+{% block title %}Plan a Trip{% endblock %}
+
+{% block head %}
+  <!-- Google Places Autocomplete -->
+  <script>
+    function initAutocomplete() {
+      console.log('⚙️ initAutocomplete()');
+      const opts = { types: ['geocode'], componentRestrictions: { country: 'uk' } };
+      const originInput = document.getElementById('orig');
+      const destInput   = document.getElementById('dest');
+
+      const originAC = new google.maps.places.Autocomplete(originInput, opts);
+      const destAC   = new google.maps.places.Autocomplete(destInput, opts);
+
+      originAC.setFields(['geometry']);
+      destAC.setFields(['geometry']);
+
+      originAC.addListener('place_changed', () => {
+        const p = originAC.getPlace();
+        if (p.geometry) {
+          document.getElementById('origin_lat').value = p.geometry.location.lat();
+          document.getElementById('origin_lng').value = p.geometry.location.lng();
+        }
+      });
+      destAC.addListener('place_changed', () => {
+        const p = destAC.getPlace();
+        if (p.geometry) {
+          document.getElementById('dest_lat').value = p.geometry.location.lat();
+          document.getElementById('dest_lng').value = p.geometry.location.lng();
+        }
+      });
+    }
+  </script>
+  <script
+    defer
+    src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places&callback=initAutocomplete">
+  </script>
+  <style>
+    .pac-container { z-index: 2000 !important; }
+    .pac-container .gm-svpc { width: 0; height: 0; overflow: hidden; }
+  </style>
+{% endblock %}
+
+{% block content %}
+<ul class="nav nav-tabs mb-4" role="tablist">
+  <li class="nav-item">
+    <button class="nav-link {% if mode!='route' %}active{% endif %}"
+            data-bs-toggle="tab" data-bs-target="#basicTab" type="button">
+      Basic
+    </button>
+  </li>
+  <li class="nav-item">
+    <button class="nav-link {% if mode=='route' %}active{% endif %}"
+            data-bs-toggle="tab" data-bs-target="#routeTab" type="button">
+      Route Planner
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <!-- BASIC simulation pane -->
+  <div class="tab-pane fade {% if mode!='route' %}show active{% endif %}"
+       id="basicTab" role="tabpanel">
+    <h2 class="mb-4">🚗 Smart EV Charging Planner</h2>
+    <form method="POST" autocomplete="off" class="card p-4 mb-4 shadow-sm">
+      <input type="hidden" name="mode" value="basic">
+      {% if error and mode=='basic' %}
+        <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+      <div class="row g-3">
+        <div class="col-md-4">
+          <label>Required Range (miles)</label>
+          <input type="number" name="range" class="form-control"
+                 value="{{ request.form.range or 100 }}" required>
+        </div>
+        <div class="col-md-4">
+          <label>Day of Use (0 = Tomorrow … 6)</label>
+          <input type="number" name="day" min="0" max="6"
+                 class="form-control" value="{{ request.form.day or 0 }}" required>
+        </div>
+        <div class="col-md-4">
+          <label>Deadline Hour (0–23)</label>
+          <input type="number" name="deadline" class="form-control"
+                 value="{{ request.form.deadline or 7 }}" required>
+        </div>
+      </div>
+      <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" id="eco_basic" name="eco_mode"
+               {% if 'eco_mode' in request.form %}checked{% endif %}>
+        <label class="form-check-label" for="eco_basic">♻️ Enable Eco Mode</label>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Run Simulation</button>
+    </form>
+  </div>
+
+  <!-- ROUTE planner pane -->
+  <div class="tab-pane fade {% if mode=='route' %}show active{% endif %}"
+       id="routeTab" role="tabpanel">
+    <h2 class="mb-4">🗺️ EV Route Planner</h2>
+    <form method="POST" autocomplete="off" class="card p-4 mb-4 shadow-sm">
+      <input type="hidden" name="mode" value="route">
+      {% if calculated_range is defined %}
+        <input type="hidden" name="range" value="{{ calculated_range|round(2) }}">
+      {% endif %}
+      {% if error and mode=='route' %}
+        <div class="alert alert-danger">{{ error }}</div>
+      {% endif %}
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="orig">Origin Address or Postcode</label>
+          <input id="orig" name="origin_addr" type="text" class="form-control"
+                 placeholder="e.g. NG7 1NY" autocomplete="off"
+                 value="{{ request.form.origin_addr or '' }}" required>
+          <small class="form-text text-muted">Start typing and choose from the dropdown</small>
+        </div>
+        <div class="col-md-6">
+          <label for="dest">Destination Address or Postcode</label>
+          <input id="dest" name="dest_addr" type="text" class="form-control"
+                 placeholder="e.g. NG2 7AR" autocomplete="off"
+                 value="{{ request.form.dest_addr or '' }}" required>
+          <small class="form-text text-muted">Start typing and choose from the dropdown</small>
+        </div>
+      </div>
+      <input type="hidden" name="origin_lat" id="origin_lat" value="{{ request.form.origin_lat or '' }}">
+      <input type="hidden" name="origin_lng" id="origin_lng" value="{{ request.form.origin_lng or '' }}">
+      <input type="hidden" name="dest_lat"   id="dest_lat"   value="{{ request.form.dest_lat or '' }}">
+      <input type="hidden" name="dest_lng"   id="dest_lng"   value="{{ request.form.dest_lng or '' }}">
+      <div class="row g-3 mt-3">
+        <div class="col-md-4">
+          <label>Day of Use (1 = Tomorrow … 7)</label>
+          <input type="number" name="day" min="1" max="6"
+                 class="form-control" value="{{ request.form.day or 0 }}" required>
+        </div>
+        <div class="col-md-4">
+          <label>Deadline Hour (0–23)</label>
+          <input type="number" name="deadline" class="form-control"
+                 value="{{ request.form.deadline or 7 }}" required>
+        </div>
+        <div class="col-md-4 d-flex align-items-end">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="eco_route" name="eco_mode"
+                   {% if 'eco_mode' in request.form %}checked{% endif %}>
+            <label class="form-check-label" for="eco_route">♻️ Enable Eco Mode</label>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-3">Compute &amp; Simulate</button>
+    </form>
+  </div>
+</div>
+
+{% if result %}
+  <ul class="nav nav-tabs mt-4" role="tablist">
+    <li class="nav-item">
+      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#summary" type="button">
+        Summary
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#schedule" type="button">
+        Schedule Table
+      </button>
+    </li>
+  </ul>
+  <div class="tab-content pt-3">
+    <!-- SUMMARY TAB -->
+    <div class="tab-pane fade show active" id="summary">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header">📋 Charging Summary</div>
+        <div class="card-body">
+          <h5>🔋 Battery Summary</h5>
+          <ul class="list-unstyled mb-3">
+            <li>• Start SoC: {{ result.battery_soc[0]|round(2) }} kWh</li>
+            <li>• End SoC by deadline: {{ result.filled_by_deadline|round(2) }} kWh</li>
+            <li>• Required energy: {{ result.filled_by_deadline|round(2) }} kWh</li>
+          </ul>
+          <h5>☀️ Solar &amp; Grid Use</h5>
+          <ul class="list-unstyled mb-3">
+            <li>• Solar Used: {{ result.solar_charging|sum|round(2) }} kWh</li>
+            <li>• Grid Used: {{ result.grid_charging|sum|round(2) }} kWh</li>
+            <li>• Discharged to Grid (V2G): {{ result.grid_discharging|sum|round(2) }} kWh</li>
+          </ul>
+          <h5>💷 Cost Analysis</h5>
+          <ul class="list-unstyled mb-0">
+            <li>• Net Cost: £{{ net_cost|round(2) }}</li>
+            <li>• Full Grid Baseline Cost: £{{ baseline_cost|round(2) }}</li>
+            <li>• Money Saved vs Baseline: £{{ money_saved|round(2) }}</li>
+            <li>• CO₂ Avoided: {{ co2_saved_kg|round(2) }} kg</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-header">📊 Battery SoC Forecast</div>
+        <div class="card-body">
+          <canvas id="socChart" height="100"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCHEDULE TAB -->
+    <div class="tab-pane fade" id="schedule">
+      <div class="card shadow-sm">
+        <div class="card-header d-flex justify-content-between">
+          <span>📅 Hourly Charging Schedule</span>
+          <form method="POST" action="{{ url_for('download_plan') }}">
+            <input type="hidden" name="mode" value="{{ mode }}">
+            <input type="hidden" name="range" value="{{ request.form.range or calculated_range|round(2) }}">
+            <input type="hidden" name="origin_addr" value="{{ request.form.origin_addr }}">
+            <input type="hidden" name="dest_addr"   value="{{ request.form.dest_addr }}">
+            <input type="hidden" name="day"         value="{{ request.form.day }}">
+            <input type="hidden" name="deadline"    value="{{ request.form.deadline }}">
+            <input type="hidden" name="eco_mode"    value="{{ 'eco_mode' in request.form }}">
+            <input type="hidden" name="start_hour"  value="{{ start_hour }}">
+            <button type="submit" class="btn btn-success btn-sm">📥 Download Plan</button>
+          </form>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-hover mb-0">
+            <thead class="table-light">
+              <tr>
+                <th>Hour</th><th>Solar (kW)</th><th>Grid (kW)</th>
+                <th>Discharge (kW)</th><th>Battery SoC (kWh)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for h in range(deadline_hour + 1) %}
+                {% set sol = result.solar_charging[h] %}
+                {% set grd = result.grid_charging[h] %}
+                {% set dis = result.grid_discharging[h] %}
+                <tr class="{% if sol>0 %}table-success{% endif %} {% if grd>0 %}table-warning{% endif %} {% if dis>0 %}table-info{% endif %}">
+                  <td>{{ (start_hour + h) % 24 }}</td>
+                  <td>{{ sol|round(2) }}</td>
+                  <td>{{ grd|round(2) }}</td>
+                  <td>{{ dis|round(2) }}</td>
+                  <td>{{ result.battery_soc[h]|round(2) }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <form method="POST" class="text-end mt-3">
+        <input type="hidden" name="mode"      value="{{ mode }}">
+        <input type="hidden" name="range"     value="{{ request.form.range or calculated_range|round(2) }}">
+        <input type="hidden" name="origin_addr" value="{{ request.form.origin_addr }}">
+        <input type="hidden" name="dest_addr"   value="{{ request.form.dest_addr }}">
+        <input type="hidden" name="day"         value="{{ request.form.day }}">
+        <input type="hidden" name="deadline"    value="{{ request.form.deadline }}">
+        <input type="hidden" name="eco_mode"    value="{{ 'eco_mode' in request.form }}">
+        <input type="text"   name="plan_name"  class="form-control d-inline-block w-auto me-2"
+               placeholder="Optional Plan Name" value="{{ request.form.plan_name }}">
+        <input type="hidden" name="save_plan" value="true">
+        <button type="submit" class="btn btn-outline-primary">💾 Save Plan</button>
+      </form>
+    </div>
+  </div>
+
+<script>
+  // 1) Render the Python list as a JS array:
+  const socData = {{ result.battery_soc[:deadline_hour+1] | tojson }};
+  // 2) Build the corresponding hour labels:
+  const socLabels = Array.from(
+    { length: {{ deadline_hour + 1 }} },
+    (_, i) => ({{ start_hour }} + i) % 24
+  );
+
+  const ctx = document.getElementById('socChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: socLabels,
+      datasets: [{
+        label: 'Battery SoC (kWh)',
+        data: socData,
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        x: { title: { display: true, text: 'Hour' } },
+        y: { title: { display: true, text: 'SoC (kWh)' }, beginAtZero: true }
+      }
+    }
+  });
+</script>
+
+{% endif %}
+{% endblock %}

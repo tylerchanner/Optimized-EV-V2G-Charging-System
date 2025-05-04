@@ -1,0 +1,610 @@
+{
+  "Tesla Model Y": {
+    "battery_capacity": 75,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "Audi Q4 e-tron": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Tesla Model 3": {
+    "battery_capacity": 75,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.26
+  },
+  "MG4": {
+    "battery_capacity": 64,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "BMW i4": {
+    "battery_capacity": 83.9,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.29
+  },
+  "Mercedes-Benz EQA": {
+    "battery_capacity": 66.5,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.30
+  },
+  "Skoda Enyaq": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Hyundai Kona Electric": {
+    "battery_capacity": 64,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.26
+  },
+  "Volvo EX30": {
+    "battery_capacity": 69,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "Volkswagen ID.4": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Nissan Leaf": {
+    "battery_capacity": 62,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.30
+  },
+  "Kia EV6": {
+    "battery_capacity": 77.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "Polestar 2": {
+    "battery_capacity": 78,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Peugeot e-208": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.25
+  },
+  "Renault Zoe": {
+    "battery_capacity": 52,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.24
+  },
+  "Fiat 500e": {
+    "battery_capacity": 42,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.23
+  },
+  "Mini Electric": {
+    "battery_capacity": 32.6,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.24
+  },
+  "Vauxhall Corsa-e": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.25
+  },
+  "Citroën ë-C4": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.26
+  },
+  "Mazda MX-30": {
+    "battery_capacity": 35.5,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "Volkswagen ID.3": {
+    "battery_capacity": 58,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.26
+  },
+  "Hyundai Ioniq 5": {
+    "battery_capacity": 77.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "Kia Niro EV": {
+    "battery_capacity": 64.8,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.26
+  },
+  "BMW iX3": {
+    "battery_capacity": 80,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.29
+  },
+  "Jaguar I-Pace": {
+    "battery_capacity": 90,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.30
+  },
+  "Mercedes-Benz EQB": {
+    "battery_capacity": 66.5,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Peugeot e-2008": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.26
+  },
+  "Renault Megane E-Tech": {
+    "battery_capacity": 60,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.25
+  },
+  "Skoda Citigo-e iV": {
+    "battery_capacity": 36.8,
+    "max_charge_rate": 7.2,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.24
+  },
+  "Honda e": {
+    "battery_capacity": 35.5,
+    "max_charge_rate": 6.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Volkswagen ID. Buzz": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.29
+  },
+  "Volvo EX90": {
+    "battery_capacity": 111,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.30
+  },
+  "BMW i5 Touring": {
+    "battery_capacity": 81.2,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Audi A6 Avant e-tron": {
+    "battery_capacity": 100,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.29
+  },
+  "Renault 5 E-Tech": {
+    "battery_capacity": 52,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.24
+  },
+  "Kia EV9": {
+    "battery_capacity": 99.8,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.31
+  },
+  "BYD Seal": {
+    "battery_capacity": 82.5,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Peugeot e-5008": {
+    "battery_capacity": 73,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.27
+  },
+  "MG ZS EV": {
+    "battery_capacity": 72.6,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.28
+  },
+  "Nissan Ariya": {
+    "battery_capacity": 87,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 11,
+    "energy_per_mile": 0.29
+  },
+  "Volkswagen e-Up!": {
+    "battery_capacity": 32.3,
+    "max_charge_rate": 7.2,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.20
+  },
+  "SEAT Mii Electric": {
+    "battery_capacity": 32.3,
+    "max_charge_rate": 7.2,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.20
+  },
+  "Smart EQ ForTwo": {
+    "battery_capacity": 17.6,
+    "max_charge_rate": 4.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.23
+  },
+  "Smart EQ ForFour": {
+    "battery_capacity": 17.6,
+    "max_charge_rate": 4.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.23
+  },
+  "Hyundai Ioniq Electric": {
+    "battery_capacity": 38.3,
+    "max_charge_rate": 7.2,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.24
+  },
+  "DS 3 Crossback E-Tense": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Mazda MX-30": {
+    "battery_capacity": 35.5,
+    "max_charge_rate": 6.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Peugeot e-Rifter": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Citroën ë-Berlingo": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Vauxhall Combo-e Life": {
+    "battery_capacity": 50,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Toyota bZ4X": {
+    "battery_capacity": 71.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Subaru Solterra": {
+    "battery_capacity": 71.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Lexus UX 300e": {
+    "battery_capacity": 54.3,
+    "max_charge_rate": 6.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Honda e": {
+    "battery_capacity": 35.5,
+    "max_charge_rate": 6.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Aiways U5": {
+    "battery_capacity": 63,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "BYD Atto 3": {
+    "battery_capacity": 60.5,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "MG5 EV": {
+    "battery_capacity": 61.1,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Nissan Townstar EV": {
+    "battery_capacity": 45,
+    "max_charge_rate": 22,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Renault Kangoo E-Tech": {
+    "battery_capacity": 45,
+    "max_charge_rate": 22,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Fiat E-Ducato": {
+    "battery_capacity": 79,
+    "max_charge_rate": 22,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.31
+  },
+"Volkswagen ID.5": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Volkswagen ID.6": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "BMW iX1": {
+    "battery_capacity": 64.7,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "BMW iX": {
+    "battery_capacity": 111.5,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.31
+  },
+  "Mercedes-Benz EQS": {
+    "battery_capacity": 108.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.30
+  },
+  "Mercedes-Benz EQE": {
+    "battery_capacity": 90.6,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Audi Q8 e-tron": {
+    "battery_capacity": 106,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.30
+  },
+  "Audi e-tron GT": {
+    "battery_capacity": 93.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.31
+  },
+  "Porsche Taycan": {
+    "battery_capacity": 93.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.32
+  },
+  "Lucid Air": {
+    "battery_capacity": 112,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Genesis GV60": {
+    "battery_capacity": 77.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Genesis GV70 Electrified": {
+    "battery_capacity": 77.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Hyundai Ioniq 6": {
+    "battery_capacity": 77.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.26
+  },
+  "Kia EV6 GT": {
+    "battery_capacity": 77.4,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Nissan Townstar EV": {
+    "battery_capacity": 45,
+    "max_charge_rate": 22,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Renault Kangoo E-Tech": {
+    "battery_capacity": 45,
+    "max_charge_rate": 22,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.29
+  },
+  "Fiat E-Ducato": {
+    "battery_capacity": 79,
+    "max_charge_rate": 22,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.31
+  },
+  "Vauxhall Vivaro Electric": {
+    "battery_capacity": 75,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.30
+  },
+  "Peugeot e-Expert": {
+    "battery_capacity": 75,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.30
+  },
+  "Fiat E-Scudo": {
+    "battery_capacity": 75,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.30
+  },
+  "Ford E-Transit": {
+    "battery_capacity": 68,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.33
+  },
+"Volkswagen ID.7": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Volkswagen ID.7 Tourer": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Renault Scenic E-Tech": {
+    "battery_capacity": 87,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.26
+  },
+  "Kia EV3": {
+    "battery_capacity": 58,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.25
+  },
+  "Skoda Elroq": {
+    "battery_capacity": 58,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.26
+  },
+  "Citroën ë-C3": {
+    "battery_capacity": 44,
+    "max_charge_rate": 7.4,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.22
+  },
+  "Fiat Grande Panda Electric": {
+    "battery_capacity": 44,
+    "max_charge_rate": 7.4,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.22
+  },
+  "Hyundai Inster": {
+    "battery_capacity": 42,
+    "max_charge_rate": 7.2,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.21
+  },
+  "MG Cyberster": {
+    "battery_capacity": 77,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "BYD Dolphin Mini": {
+    "battery_capacity": 38,
+    "max_charge_rate": 7.2,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.20
+  },
+  "Leapmotor T03": {
+    "battery_capacity": 41,
+    "max_charge_rate": 6.6,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.21
+  },
+  "Leapmotor C10": {
+    "battery_capacity": 69,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Cupra Raval": {
+    "battery_capacity": 55,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.25
+  },
+  "Alfa Romeo Stelvio EV": {
+    "battery_capacity": 100,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.30
+  },
+  "Mazda 6e": {
+    "battery_capacity": 75,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.28
+  },
+  "Mercedes-Benz CLA EV": {
+    "battery_capacity": 85,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.27
+  },
+  "Nissan Leaf (2025)": {
+    "battery_capacity": 60,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.26
+  },
+  "Skoda Epiq": {
+    "battery_capacity": 58,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.25
+  },
+  "Mobilize Duo": {
+    "battery_capacity": 10.4,
+    "max_charge_rate": 3.7,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.18
+  },
+  "Ford Puma Gen-E": {
+    "battery_capacity": 46,
+    "max_charge_rate": 11,
+    "max_discharge_rate": 0,
+    "energy_per_mile": 0.24
+  }
+}
+
+

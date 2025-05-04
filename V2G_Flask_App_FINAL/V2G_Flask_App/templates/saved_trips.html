@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block title %}Saved Trips{% endblock %}
+
+{% block content %}
+<h2 class="mb-4">📥 Saved Trips</h2>
+
+{% if plans %}
+  <div class="d-flex justify-content-end mb-3">
+    <a href="{{ url_for('clear_plans') }}"
+       class="btn btn-outline-danger btn-sm">
+      ❌ Clear All Plans
+    </a>
+  </div>
+
+  <div class="list-group">
+    {% for plan in plans %}
+      <div class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>{{ plan.name or plan.id }}</strong>
+          <span class="badge bg-{{ 'success' if plan.mode == 'basic' and plan.get('eco_mode') else 'secondary' }} ms-2">
+            {{ 'Eco Mode' if plan.mode == 'basic' and plan.get('eco_mode') else 'Standard' }}
+          </span>
+          <small class="text-muted ms-3">
+            Range: {{ plan.range|round(1) }} miles
+          </small>
+        </div>
+        <div class="btn-group">
+          <button type="button"
+                  class="btn btn-sm btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#viewModal{{ plan.id }}">
+            👁️ View
+          </button>
+          <a href="{{ url_for('download_saved_plan', plan_id=plan.id) }}"
+             class="btn btn-sm btn-success">
+            📥 Download
+          </a>
+          <a href="{{ url_for('delete_plan', plan_id=plan.id, from_page='saved_trips') }}"
+             class="btn btn-sm btn-danger">
+            🗑️ Delete
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {# Modals for each plan #}
+  {% for plan in plans %}
+    <div class="modal fade" id="viewModal{{ plan.id }}" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <form class="d-flex w-100 gap-2"
+                  method="POST"
+                  action="{{ url_for('edit_plan_name', plan_id=plan.id) }}">
+              <input type="text"
+                     class="form-control"
+                     name="new_name"
+                     value="{{ plan.name }}"
+                     placeholder="Plan name">
+              <button type="submit"
+                      class="btn btn-outline-primary btn-sm">
+                ✏️ Rename
+              </button>
+            </form>
+            <button type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Range:</strong> {{ plan.range|round(1) }} miles</p>
+            <p>
+              <span class="badge bg-{{ 'success' if plan.mode == 'basic' and plan.get('eco_mode') else 'secondary' }}">
+                {{ 'Eco Mode' if plan.mode == 'basic' and plan.get('eco_mode') else 'Standard' }}
+              </span>
+            </p>
+            <hr>
+            <pre style="white-space: pre-wrap; font-family: Menlo, monospace;">
+{{ plan.summary_text }}
+            </pre>
+          </div>
+          <div class="modal-footer">
+            <a href="{{ url_for('download_saved_plan', plan_id=plan.id) }}"
+               class="btn btn-success btn-sm">
+              📥 Download
+            </a>
+            <a href="{{ url_for('delete_plan', plan_id=plan.id, from_page='saved_trips') }}"
+               class="btn btn-danger btn-sm">
+              🗑️ Delete
+            </a>
+            <button type="button"
+                    class="btn btn-secondary btn-sm"
+                    data-bs-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+
+  <script>
+    // autofocus rename input when modal opens
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('shown.bs.modal', () => {
+        const input = modal.querySelector('input[name="new_name"]');
+        if (input) input.focus();
+      });
+    });
+  </script>
+
+{% else %}
+  <p>No saved plans yet. <a href="{{ url_for('planner') }}">Create one here</a>.</p>
+{% endif %}
+{% endblock %}

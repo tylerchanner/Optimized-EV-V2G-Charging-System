@@ -1,0 +1,18 @@
+
+{
+  "model_name":           "CNN_24_64_5_0.4_0.0008.h5",
+  "scaler_X_path":        "scalers/scaler_X.save",
+  "scaler_y_path":        "scalers/scaler_Y.save",
+  "longitude":           -1.1581,
+  "latitude":             52.9548,
+  "battery_capacity":     75.0,
+  "initial_soc":          0.5,
+  "charge_rate":         11.0,
+  "discharge_rate":      11.0,
+  "energy_per_mile":      0.27,
+  "v2g_sell_price":       0.2,
+  "cycle_degradation_cost": 1.0,
+  "switch_penalty":       0.05,
+  "emission_factor":      0.233,
+  "car_name":            "Tesla Model Y"
+}
